@@ -9,23 +9,23 @@ class Commands
 
   def poll
     @bot.command :poll do |event|
+      event.channel.start_typing
       question = event.content.sub('?poll', '').strip
+      event.message.delete
 
       # Send the poll embed
-      event.channel.send_embed do |embed|
+      message = event.channel.send_embed do |embed|
         embed.title = "#{question} 📣"
         embed.colour = 16771337
         embed.author = Discordrb::Webhooks::EmbedAuthor.new(
           name: event.author.display_name,
           icon_url: event.author.avatar_url
         )
-        embed.add_field(
-          name: 'Oui ✅'
-        )
-        embed.add_field(
-          name: 'Oui ❌'
-        )
+        embed.description = "Oui ✅\nNon ❌"
       end
+
+      message.create_reaction '✅'
+      message.create_reaction '❌'
     end
   end
 
