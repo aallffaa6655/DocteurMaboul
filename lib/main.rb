@@ -1,4 +1,5 @@
 require 'discordrb'
+require_relative 'commands'
 
 unless ARGV.size == 1
   raise 'Wrong size of args.'
@@ -6,7 +7,10 @@ unless ARGV.size == 1
 end
 
 token = ARGV[0]
-bot = Discordrb::Bot.new(token: token)
+bot = Discordrb::Commands::CommandBot.new(token: token, prefix: '?')
+
+commands = Commands.new(bot)
+commands.info
 
 Kernel.at_exit { bot.stop }
 
