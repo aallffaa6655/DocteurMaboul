@@ -4,6 +4,29 @@ class Commands
     @bot = bot
 
     info
+    poll
+  end
+
+  def poll
+    @bot.command :poll do |event|
+      question = event.content.sub('?poll', '').strip
+
+      # Send the poll embed
+      event.channel.send_embed do |embed|
+        embed.title = "#{question} 📣"
+        embed.colour = 16771337
+        embed.author = Discordrb::Webhooks::EmbedAuthor.new(
+          name: event.author.display_name,
+          icon_url: event.author.avatar_url
+        )
+        embed.add_field(
+          name: 'Oui ✅'
+        )
+        embed.add_field(
+          name: 'Oui ❌'
+        )
+      end
+    end
   end
 
   def info
