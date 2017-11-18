@@ -10,12 +10,13 @@ class Command
   # When the command is called
   def command_called
     @bot.message(start_with: @command) do |event|
-      execute event
+      args = event.content.sub(@command, '').strip.split
+      execute(event, args)
     end
   end
 
   # Execute action
-  def execute(event)
+  def execute(event, args)
     raise 'Not implemented'
   end
 
