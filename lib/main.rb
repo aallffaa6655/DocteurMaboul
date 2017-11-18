@@ -1,16 +1,18 @@
 require 'discordrb'
+require 'colorize'
 require_relative 'commands'
 
-unless ARGV.size == 1
-  raise 'Wrong size of args.'
-  exit
-end
+# Exit if doesn't have requested size of args
+abort 'Wrong size of args.'.red unless ARGV.size == 1
 
 token = ARGV[0]
+# Load discord bot
 bot = Discordrb::Commands::CommandBot.new(token: token, prefix: '?')
 
-commands = Commands.new(bot)
-commands.info
+puts 'The bot is loaded. For exit type CTRL + C'.green
+
+# Load all bot commands
+Commands.new(bot)
 
 Kernel.at_exit { bot.stop }
 
