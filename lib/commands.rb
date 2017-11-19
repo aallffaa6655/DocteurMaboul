@@ -40,6 +40,8 @@ class Commands
         embed.title = 'Informations 💡'
         embed.colour = 16771337
         embed.description = 'Je suis développé en Ruby <:ruby:373471020255936512> et open-source. Si vous voulez proposer un changement sur moi, contactez un Pilier de la commuanuté. 😁'
+        embed.add_field(name: '?info', value: 'Affiche ce message.')
+        embed.add_field(name: '?poll Question', value: 'Pose une question.')
       end
     end
   end
