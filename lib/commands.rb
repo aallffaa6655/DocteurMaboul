@@ -24,10 +24,12 @@ class Commands
           icon_url: event.author.avatar_url
         )
         embed.description = choices.to_a.map{ |choice| choice * ' '} * "\n"
+
       end
 
       choices.each do |_, emoji|
         message.create_reaction emoji
+
       end
 
       nil
@@ -47,6 +49,7 @@ class Commands
         embed.description = 'Je suis développé en Ruby <:ruby:373471020255936512> et open-source. Si vous voulez proposer un changement sur moi, contactez un Pilier de la commuanuté. 😁'
         embed.add_field(name: '?info', value: 'Affiche ce message.')
         embed.add_field(name: '?poll Question', value: 'Pose une question.')
+        embed.add_field(name: 'Alexis', value: 'est un BG !')
       end
     end
   end
