@@ -11,7 +11,6 @@ bot = Discordrb::Commands::CommandBot.new(token: token, prefix: '?')
 
 puts 'The bot is loaded. For exit type CTRL + C'.green
 
-
 # Load all bot commands
 Commands.new(bot)
 

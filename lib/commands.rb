@@ -24,12 +24,10 @@ class Commands
           icon_url: event.author.avatar_url
         )
         embed.description = choices.to_a.map{ |choice| choice * ' '} * "\n"
-
       end
 
       choices.each do |_, emoji|
         message.create_reaction emoji
-
       end
 
       nil
