@@ -13,6 +13,8 @@ class Commands
       question = event.content.sub('?poll', '').strip
       event.message.delete
 
+      choices = {'Oui' => '✅', 'Non' => '❌', 'Indécis' => '🤔'}
+
       # Send the poll embed
       message = event.channel.send_embed do |embed|
         embed.title = "#{question} 📣"
@@ -21,11 +23,14 @@ class Commands
           name: event.author.display_name,
           icon_url: event.author.avatar_url
         )
-        embed.description = "Oui ✅\nNon ❌"
+        embed.description = choices.to_a.map{ |choice| choice * ' '} * "\n"
       end
 
-      message.create_reaction '✅'
-      message.create_reaction '❌'
+      choices.each do |_, emoji|
+        message.create_reaction emoji
+      end
+
+      nil
     end
   end
 
